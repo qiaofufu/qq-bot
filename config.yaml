@@ -1,0 +1,9 @@
+baseURL: "http://localhost:5700"
+port: 5710
+database:
+  mongodb:
+    enable: true
+    uri: mongodb://localhost/bot
+    database: bot
+admin:
+  account: 707402933
