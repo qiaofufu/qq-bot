@@ -16,7 +16,6 @@ import (
 type Bot struct {
 	Config  *config.Config
 	Command *command.Command
-
 	Parameter *Parameter
 }
 
@@ -30,10 +29,11 @@ func Run(b *Bot) error {
 	b.Config.Init()
 	b.Command.Init()
 	bot = b
+
+	// web server
 	r := gin.Default()
 	r.Use(Cors())
 	gin.SetMode(gin.ReleaseMode)
-
 	port := ":" + viper.GetString("server.port")
 	httpsPort := ":" + viper.GetString("server.httpsPort")
 	pemPath := viper.GetString("server.pemPath")
@@ -41,8 +41,8 @@ func Run(b *Bot) error {
 	r.POST("", bot.ReportCall)
 	r.POST("qqMessage", bot.WallMessage)
 	go r.Run(port)
-	r.RunTLS(httpsPort, pemPath, keyPath)
-	return nil
+	err := r.RunTLS(httpsPort, pemPath, keyPath)
+	return err
 }
 
 func (b *Bot) ReportCall(ctx *gin.Context) {

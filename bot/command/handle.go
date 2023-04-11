@@ -91,7 +91,7 @@ func (c *Command) Audit(mID string, status string, param map[string]interface{})
 
 	if status == "通过" {
 		msg, err := c.service.SchoolWallService.GetSchoolWallMessage(id)
-		message := fmt.Sprintf("%s\n投稿ID: %d", msg.Msg, msg.MsgID)
+		message := fmt.Sprintf("%s\n投稿ID: %d\n%s", msg.Msg, msg.MsgID,"点击链接进行投稿: https://yibindfxy.top")
 		if err != nil {
 			c.ErrorComment(err, "获取审核信息错误", param)
 			return

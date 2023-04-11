@@ -7,3 +7,11 @@ database:
     database: bot
 admin:
   account: 707402933
+server:
+  port: 9200
+  httpsPort: 9201
+  
+  pemPath: /etc/nginx/ssl/yibindfxy.top.pem
+  keyPath: /etc/nginx/ssl/yibindfxy.top.key
+
+
